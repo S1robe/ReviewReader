@@ -27,14 +27,15 @@ def createReviewFile():
                 (Enter nothing to go back)")
         if fileName == '':
             return
+        # create file with read write permissions
         try:
-            file = open(filename, 'x')
-            
+            file = open(fileName, 'x')
         except FileExistsError:
-            print(fileName, "That exists, please specify a different name.")
+            print(fileName, "- That exists, please specify a different name.")
             fileName = True
-
-    # create file with read write permissions
+        except IOError:
+            print(fileName, "- Dont have access to this...")
+            fileName = True 
 
 
 def loadReviewFile():
